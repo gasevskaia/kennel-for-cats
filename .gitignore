@@ -1,0 +1,6 @@
+dist/
+app/images/dest/
+node_modules/
+*.min.js
+*.min.css
+.idea
