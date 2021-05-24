@@ -74,6 +74,7 @@ function buildcopy() {
         'app/js/**/*.min.js',
         'app/images/dest/**/*',
         'app/**/*.html',
+        'app/fonts/*'
     ], { base: 'app' }) // Параметр "base" сохраняет структуру проекта при копировании
         .pipe(dest('dist')) // Выгружаем в папку с финальной сборкой
 }
@@ -108,6 +109,6 @@ exports.images = images;
 // Экспортируем функцию cleanimg() как таск cleanimg
 exports.cleanimg = cleanimg;
 // Создаём новый таск "build", который последовательно выполняет нужные операции
-exports.build = series(cleandist, styles, scripts, images, buildcopy);
+exports.build = series(cleandist, cleanimg, styles, scripts, images, buildcopy);
 // Экспортируем дефолтный таск с нужным набором функций
-exports.default = parallel(styles, scripts, browsersync, startwatch);
+exports.default = parallel(cleanimg, styles, scripts, images, browsersync, startwatch);
